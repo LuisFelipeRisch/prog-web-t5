@@ -1,0 +1,14 @@
+<div id="<%= dom_id cart_product %>" class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%= cart_product.name %></h5>
+    <p class="card-text"><%= cart_product.description %></p>
+    <p class="card-text">R$ <%= cart_product.total_value %></p>
+
+    <% store = cart_product.store %>
+
+    <p class="card-text">Vendido por: <%= link_to store.name, store, class: "btn-primary" %></p>
+
+    <%= button_to "Remover", remove_cart_product_path(cart_product), method: :delete, class: "btn btn-danger" %>
+  </div>
+</div>
+

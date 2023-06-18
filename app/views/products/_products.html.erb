@@ -1,0 +1,8 @@
+<% products.each do |product| %>
+  <div class="col-md-3 mb-4">
+    <%= render product,
+      show_store_on_card: show_store_on_card,
+      show_buttons: show_buttons
+    %>
+  </div>
+<% end %>

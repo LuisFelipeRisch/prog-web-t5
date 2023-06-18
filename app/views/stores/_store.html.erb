@@ -1,0 +1,13 @@
+<div id="<%= dom_id store %>" class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%= store.name %></h5>
+    <p class="card-text"><%= store.description %></p>
+
+    <%= link_to "Detalhes", store, class: "btn btn-primary mb-1" %>
+    <% if current_user&.admin? %>
+      <%= link_to "Editar", edit_store_path(store), class: "btn btn-info text-white mb-1" %>
+      <%= button_to "Deletar", store_path(store), method: :delete, class: "btn btn-danger" %>
+    <% end %>
+  </div>
+</div>
+

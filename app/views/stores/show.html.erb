@@ -1,0 +1,9 @@
+<div class="container text-white">
+  <h1><%= @store.name %></h1>
+  <p><%= @store.description %></p>
+
+  <h2>Produtos</h2>
+  <div class="row">
+    <%= render 'products/products', products: @store.products, show_store_on_card: false, show_buttons: true %>
+  </div>
+</div>

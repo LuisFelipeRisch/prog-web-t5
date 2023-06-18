@@ -1,0 +1,23 @@
+<div id="<%= dom_id product %>" class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%= product.name %></h5>
+    <p class="card-text"><%= product.description %></p>
+    <p class="card-text">R$ <%= product.total_value %></p>
+
+    <% if show_store_on_card %>
+      <% store = product.store %>
+      <p class="card-text">Vendido por: <%= link_to store.name, store, class: "btn-primary" %></p>
+    <% end %>
+
+    <% if show_buttons %>
+      <% if current_user %>
+        <%= button_to "Adicionar", cart_items_path(productId: product.id), method: :post, class: "btn btn-primary mb-1" %>
+      <% end %>
+      <% if current_user&.admin? %>
+        <%= link_to "Editar", edit_product_path(product), class: "btn btn-info text-white mb-1" %>
+        <%= button_to "Deletar", product_path(product), method: :delete, class: "btn btn-danger" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

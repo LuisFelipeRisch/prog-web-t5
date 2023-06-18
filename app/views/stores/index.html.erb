@@ -1,0 +1,9 @@
+<div id="stores" class="container">
+  <div class="row">
+    <% @stores.each do |store| %>
+      <div class="col-md-3 mb-4">
+        <%= render store %>
+      </div>
+    <% end %>
+  </div>
+</div>

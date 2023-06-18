@@ -1,0 +1,34 @@
+<div class="container text-white">
+  <h1><%= product.new_record? ? "Criar" : "Editar" %> Produto</h1>
+  <%= form_with(model: product, class: "form") do |form| %>
+    <% if product.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+        <ul>
+          <% product.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="mb-3">
+      <%= form.label :name, "Nome" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :description, "Descrição" %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :total_value, "Preço" %>
+      <%= form.number_field :total_value, class: "form-control" %>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <%= form.label :store_id, "Loja: ", class: "input-group-text" %>
+      </div>
+      <%= form.collection_select(:store_id, Store.all, :id, :name, prompt: true, class: "custom-select") %>
+    </div>
+    <%= form.submit "#{product.new_record? ? "Criar" : "Editar"} Produto", class: "btn btn-primary" %>
+  <% end %>
+</div>
