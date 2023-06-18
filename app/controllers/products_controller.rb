@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!,    only: %i[ new edit update create destroy ]
   before_action :check_user_permission, only: %i[ new edit update create destroy ]
 
   def new
@@ -49,7 +50,7 @@ class ProductsController < ApplicationController
     end
 
     def check_user_permission
-      if !current_user&.admin?
+      if !current_user.admin?
         render "errors/forbidden", status: :forbidden
       end
     end

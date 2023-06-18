@@ -147,4 +147,25 @@ class StoresControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :forbidden
   end
+
+  test "Admin user can create a new store" do
+    user = users(:one)
+
+    user.is_admin = true
+    user.build_cart
+    user.save!(validate: false)
+
+    sign_in(user)
+
+    params = {
+      store: {
+        name: 'Test name',
+        description: 'Test description',
+      }
+    }
+
+    assert_difference 'Store.count', 1 do
+      post stores_path, params: params
+    end
+  end
 end
