@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-now = Time.now.utc
+User.create({email: 'admin@example.com',     password: 'password123', password_confirmation: 'password123', is_admin: true})
+User.create({email: 'not_admin@example.com', password: 'password123', password_confirmation: 'password123'})
 
 store_one = Store.find_or_create_by(name: "BCC - CAAD", description: "Monster a preço de bala!!!!!")
 store_two = Store.find_or_create_by(name: "Burguer King", description: "Melhor que Mcdonald's")
